@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Script para copiar estructura de directorios unicamente
 
 #"set -e" hace que bash salga en caso de error de cualquier comando
@@ -18,7 +18,7 @@ usage() {
   echo "  -l [NIVEL]                  nivel de directorios a copiar"
   echo "  -h                          muestra esta ayuda"
   echo ""
-  echo "Reporte errores a '{here@there}'"
+  echo "Reporte errores a '{here@home.tux}'"
   echo ""
 }
 

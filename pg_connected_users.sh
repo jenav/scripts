@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Guarda stderr en el descriptor 3 para luego restaurarlo
 exec 3>&2
@@ -46,7 +46,7 @@ usage() {
    echo "  -h                      muestra esta ayuda"
    echo ""
    echo ""
-   echo "Reporte errores a '{here@there}'"
+   echo "Reporte errores a '{here@home.tux}'"
    echo ""
 }
 

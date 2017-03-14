@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ROOT='/home/www/fotos'
 LOG_CORREO='/home/usuario/scripts/logs/correo.log'
