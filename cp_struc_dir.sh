@@ -8,18 +8,18 @@ set -o pipefail
 
 # Funciones
 usage() {
-  echo ""
-  echo "Script para copiar estructura de directorios (esqueleto)."
-  echo ""
-  echo "Empleo:"
-  echo "   ${NOMBRE_SCRIPT} [opciones] [ORIGEN] [DESTINO]"
-  echo ""
-  echo "Opciones:"
-  echo "  -l [NIVEL]                  nivel de directorios a copiar"
-  echo "  -h                          muestra esta ayuda"
-  echo ""
-  echo "Reporte errores a '{here@home.tux}'"
-  echo ""
+   echo ""
+   echo "Script para copiar estructura de directorios (esqueleto)."
+   echo ""
+   echo "Empleo:"
+   echo "   ${NOMBRE_SCRIPT} [opciones] [ORIGEN] [DESTINO]"
+   echo ""
+   echo "Opciones:"
+   echo "  -l [NIVEL]                  nivel de directorios a copiar"
+   echo "  -h                          muestra esta ayuda"
+   echo ""
+   echo "Reporte errores a '{here@home.tux}'"
+   echo ""
 }
 
 # Variables
@@ -27,19 +27,19 @@ NOMBRE_SCRIPT=$(basename ${0})
 NIVEL=0
 
 while getopts ":l:h" OPCION; do
-  case ${OPCION} in
-    l)
-	   if [ -z "${OPTARG}" ]; then
-	   	echo "Debe especificar un valor"
-	   	usage
-	   fi
-      NIVEL=${OPTARG}
-      ;;
-    *|h)
-      usage
-      exit
-      ;;
-  esac
+   case ${OPCION} in
+      l)
+         if [ -z "${OPTARG}" ]; then
+            echo "Debe especificar un valor"
+            usage
+         fi
+         NIVEL=${OPTARG}
+         ;;
+      *|h)
+         usage
+         exit
+         ;;
+   esac
 done
 
 shift $((OPTIND-1))
@@ -57,10 +57,9 @@ if [ -d "${DESTINO}" ]; then
    exit
 fi
 
-cd -- ${ORIGEN}
+cd -- "${ORIGEN}"
 if [[ "${NIVEL}" -gt 0 ]]; then
-  find . -maxdepth ${NIVEL} -type d -exec mkdir -p -- "${DESTINO}/{}" \;
+   find . -maxdepth ${NIVEL} -type d -exec mkdir -p -- "${DESTINO}/{}" \;
 else
-  find . -type d -exec mkdir -p -- "${DESTINO}/{}" \;
+   find . -type d -exec mkdir -p -- "${DESTINO}/{}" \;
 fi
-
