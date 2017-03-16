@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
+# Muestra los usuarios conectados a una base de datos
 
 # Guarda stderr en el descriptor 3 para luego restaurarlo
 exec 3>&2
 exec 2> /dev/null
 
+# Funciones
 check_if_in_use() {
 #~ arrIN=(${var//|/ })
 #~  // significan 'reemplazo global'
@@ -50,7 +52,7 @@ usage() {
    echo ""
 }
 
-## Variables por defecto
+# Variables por defecto
 DB_MONITOR="{default_db}"
 USERNAME="{default_user}"
 PASSWORD="{default_pass}"

@@ -44,8 +44,9 @@ done
 
 shift $((OPTIND-1))
 
+# sin la barra al final, por las dudas
 ORIGEN=$(realpath ${1%/})
-DESTINO=$(realpath ${2%/})    ## sin la barra al final, por las dudas
+DESTINO=$(realpath ${2%/})
 
 if [ "${ORIGEN}" == "${DESTINO}" ]; then
    echo "Debe elegir un directorio de destino diferente"

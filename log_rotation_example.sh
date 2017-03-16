@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
+# Script de ejemplo para utilizar la función "rotate"
 
-#ROTATION FUNCTION
+# Función
 function rotate {
    # Parameter validations
    if [ -d "${1}" ]; then
@@ -11,6 +12,7 @@ function rotate {
       exit 1
    fi
 
+	# Create up to 5 historical records
    if [ -f "${1}" ]; then
       for i in 0 1 2 3 4 5; do
          if [ -f "${1}.${i}" ]; then
@@ -20,15 +22,21 @@ function rotate {
             return
          fi
       done
-   
+   	
+   	# Compress historical records if slots are full
       if [ "${i}" -eq "5" ]; then
+      	# Find oldest record
          clean_filename="${1##*/}"     # log filename sanitation
          file_path="${1%/*}"           # log file path
          data_oldest_file=$(find "${file_path}" -maxdepth 1 -type f -name "${clean_filename}*" -printf '%T+ %p\n' | sort | head -n 1) 
          array_oldest_file=(${data_oldest_file// / })
          filename_oldest=$(basename ${array_oldest_file[1]})
          full_filename_oldest="${file_path}/${filename_oldest}"
-         tar --remove-files -zcvf "${full_filename_oldest}.tgz" "${full_filename_oldest}" > /dev/null 2>&1 
+         
+         # Backup oldest record freeing a slot
+         tar --remove-files -zcvf "${full_filename_oldest}.tgz" "${full_filename_oldest}" > /dev/null 2>&1
+         
+         # Re-analyze logs with 1 slot free now
          rotate "${1}"
       fi
    fi
